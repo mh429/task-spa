@@ -1,15 +1,25 @@
 import { TaskItem } from "./TaskItem"
 
-export const TaskList = ({tasks, ...handlers}) => {
-    return (
+export const TaskList = ({tasks, statusFilter, ...handlers}) => {
+
+  // 完了・未完了でフィルターする
+  const filteredTasks = tasks.filter(task => {
+    if (statusFilter) return task.status;
+    if (!statusFilter) return !task.status;
+  });
+
+  return (
+    <div>
       <ul>
-        {tasks.map(task => (
+        {filteredTasks.map(task => (
           <TaskItem
             key={task.id}
             task={task}
             {...handlers}
           />
         ))}
-      </ul>
-    )
+      </ul>      
+    </div>
+
+  )
 }

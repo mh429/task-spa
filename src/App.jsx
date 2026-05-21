@@ -17,9 +17,12 @@ function App() {
   // 編集中のタスクID
   const [editingId, setEditingId] = useState(null);
 
-  // 完了・未完了のカウンター
+  // 完了・未完了のカウンター（trueが完了、falseが未完了）
   const [trueCounter, setTrueCounter] = useState(0);
   const [falseCounter, setFalseCounter] = useState(0);
+
+  // 完了・未完了のフィルター
+  const [statusFilter, setStatusFilter] = useState(false)
 
   // tasksに変更があるたび、ローカルストレージを更新
   useEffect(() => {
@@ -33,17 +36,17 @@ function App() {
   }, [tasks]);
 
   // タスク追加関数
-  const addTask = (title, caption, limit, category) => {
+  const addTask = (title, caption, limit) => {
     setTasks([
       ...tasks,
-      {id:Date.now(), title, caption, limit, category, status: false}
+      {id:Date.now(), title, caption, limit, status: false}
     ]);
   };
 
   // タスク編集関数
-  const updateTask = (id, newTitle, newCaption, newLimit, newCategory) => {
+  const updateTask = (id, newTitle, newCaption, newLimit) => {
     // タスク一覧から該当のタスクを探し、titleを書き換える
-    setTasks(tasks.map(task => task.id === id ? {...task, title: newTitle, caption:newCaption, limit: newLimit, category: newCategory} : task));
+    setTasks(tasks.map(task => task.id === id ? {...task, title: newTitle, caption:newCaption, limit: newLimit} : task));
     // 編集中のタスクIDを空にする
     setEditingId(null);
   };
@@ -63,14 +66,18 @@ function App() {
     <div>
       <h1>タスク管理アプリ</h1>
 
-
       <h2>タスク登録</h2>
         <TaskInput onAdd={addTask} />
 
-
       <h2>タスク一覧</h2>
-        <p>完了：{trueCounter}件</p>
-        <p>未完了：{falseCounter}件</p>
+
+        <div onClick={() => setStatusFilter(false)}>
+          <p>未完了：{falseCounter}件</p>
+        </div>
+        <div onClick={() => setStatusFilter(true)}>
+          <p>完了：{trueCounter}件</p>
+        </div>
+
         <TaskList
         tasks={tasks}
         editingId={editingId}
@@ -78,6 +85,7 @@ function App() {
         onUpdate={updateTask}
         onToggle={toggleTask}
         onDelete={deleteTask}
+        statusFilter={statusFilter}
         />
       
     </div>
