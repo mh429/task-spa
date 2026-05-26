@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { TaskList } from './components/TaskList';
 import { TaskInput } from './components/TaskInput';
+import { TaskFilter } from './components/TaskFilter';
 import './App.css'
 
 const STORAGE_KEY = "tasksLocal"
@@ -14,29 +15,20 @@ function App() {
     return tasksLocal ? JSON.parse(tasksLocal) : [];
   });
 
-  // 編集中のタスクID
-  const [editingId, setEditingId] = useState(null);
+  // tasksに変更があるたび、ローカルストレージを更新
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  }, [tasks]);  
 
-  // // 完了・未完了のカウンター（trueが完了、falseが未完了）
-  // const [trueCounter, setTrueCounter] = useState(0);
-  // const [falseCounter, setFalseCounter] = useState(0);
-
+  // 完了・未完了のカウンター（trueが完了、falseが未完了）
   const trueCounter = tasks.filter(task => task.status === true).length;
   const falseCounter = tasks.filter(task => task.status === false).length;
 
   // 完了・未完了のフィルター
   const [statusFilter, setStatusFilter] = useState(false)
 
-  // tasksに変更があるたび、ローカルストレージを更新
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-  }, [tasks]);
-
-  // // tasksに変更があるたび、件数を再カウント
-  // useEffect(() => {
-  //   setTrueCounter(tasks.filter(task => task.status === true).length);
-  //   setFalseCounter(tasks.filter(task => task.status === false).length);
-  // }, [tasks]);
+  // 編集中のタスクID
+  const [editingId, setEditingId] = useState(null);
 
   // タスク追加関数
   const addTask = (title, caption, limit) => {
@@ -74,21 +66,20 @@ function App() {
 
       <h2>タスク一覧</h2>
 
-        <div onClick={() => setStatusFilter(false)}>
-          <p>未完了：{falseCounter}件</p>
-        </div>
-        <div onClick={() => setStatusFilter(true)}>
-          <p>完了：{trueCounter}件</p>
-        </div>
+        <TaskFilter 
+        falseCounter={falseCounter}
+        trueCounter={trueCounter}
+        onSetFilter={setStatusFilter}        
+        />
 
         <TaskList
         tasks={tasks}
         editingId={editingId}
+        statusFilter={statusFilter}        
         onEditStart={setEditingId}
         onUpdate={updateTask}
         onToggle={toggleTask}
         onDelete={deleteTask}
-        statusFilter={statusFilter}
         />
       
     </div>
