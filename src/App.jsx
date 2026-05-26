@@ -38,7 +38,13 @@ function App() {
   };
 
   // タスク編集関数
-  const updateTask = (id, newTitle, newCaption, newLimit) => {
+  const updateTask = (id, newTitle, newCaption, newLimit, editTitleRef) => {
+    // タイトルが空ならリターン
+    if(!newTitle.trim()) {
+      editTitleRef.current.focus();
+      return;
+    }
+
     // タスク一覧から該当のタスクを探し、書き換える
     setTasks(tasks.map(task => task.id === id ? {...task, title: newTitle, caption:newCaption, limit: newLimit} : task));
     // 編集中のタスクIDを空にする

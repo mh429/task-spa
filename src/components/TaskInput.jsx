@@ -10,7 +10,12 @@ export const TaskInput = ({onAdd}) => {
   const titleRef = useRef(null);
 
   const handleAdd = () => {
-    if(!title.trim()) return;
+    // タイトルが空ならリターン
+    if(!title.trim()) {
+      // alert("タイトルは必須です")
+      titleRef.current.focus();
+      return;
+    }
 
     // 親コンポーネントにタスク追加を依頼
     onAdd(title,caption,limit);

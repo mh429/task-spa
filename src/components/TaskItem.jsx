@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 
 export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete}) => {
   // 編集内容
@@ -6,16 +6,21 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete}
   const[editCaption, setEditCaption] = useState(task.caption);
   const[editLimit, setEditLimit] = useState(task.limit);
 
+  // input要素を参照するためのref
+  const editTitleRef = useRef(null);
+
   // 編集モード
   if(editingId === task.id){
     return (
       <li>
         <p>
-          タイトル：
+          タイトル（必須）：
           <input
             type="text"
             value={editTitle}
             onChange={e => setEditTitle(e.target.value)}
+            placeholder="タイトルを入力"
+            ref={editTitleRef}
           />  
         </p>
         <p>
@@ -27,14 +32,14 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete}
           ></textarea>
         </p>
         <p>
-          期日：
+          期限：
           <input
             type="date"
             value={editLimit}
             onChange={e => setEditLimit(e.target.value)}
           />
         </p>
-        <button onClick={() => onUpdate(task.id, editTitle, editCaption, editLimit)}>保存</button>
+        <button onClick={() => onUpdate(task.id, editTitle, editCaption, editLimit, editTitleRef)}>保存</button>
       </li>
     );
   }
