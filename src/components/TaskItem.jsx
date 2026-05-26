@@ -6,6 +6,9 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete}
   const[editCaption, setEditCaption] = useState(task.caption);
   const[editLimit, setEditLimit] = useState(task.limit);
 
+  // 削除確認
+  const[deleteConfirm, setDeleteConfirm] = useState(false);
+
   // input要素を参照するためのref
   const editTitleRef = useRef(null);
 
@@ -49,12 +52,22 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete}
     <li>
       <p>タイトル：{task.title}</p>
       {task.caption && <p>説明：{task.caption}</p>}
+      
       {task.limit && <p>期限：{task.limit}</p>}
 
-      {/* <p>ステータス：{task.status ? "完了" : "未完了"}</p> */}
       <button onClick={() => onToggle(task.id)}>{task.status ? "未完了に戻す" : "完了"}</button>
+
       <button onClick={() => onEditStart(task.id)}>編集</button>
-      <button onClick={() => onDelete(task.id)}>削除</button>
+      <button onClick={() => setDeleteConfirm(true)}>削除</button>
+
+      {/* 削除確認 */}
+      {deleteConfirm && (
+        <div>
+          <p>削除しますか？</p>
+          <button onClick={() => onDelete(task.id)}>はい</button>
+          <button onClick={() => setDeleteConfirm(false)}>いいえ</button>
+        </div>
+      )}
     </li>
   )
 }
