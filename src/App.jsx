@@ -7,7 +7,6 @@ import './App.css'
 const STORAGE_KEY = "tasksLocal"
 
 function App() {
-
   // タスク一覧
   const [tasks, setTasks] = useState(() => {
     // 初回レンダリング時にローカルストレージから取得
@@ -40,7 +39,7 @@ function App() {
 
   // タスク編集関数
   const updateTask = (id, newTitle, newCaption, newLimit) => {
-    // タスク一覧から該当のタスクを探し、titleを書き換える
+    // タスク一覧から該当のタスクを探し、書き換える
     setTasks(tasks.map(task => task.id === id ? {...task, title: newTitle, caption:newCaption, limit: newLimit} : task));
     // 編集中のタスクIDを空にする
     setEditingId(null);
@@ -81,7 +80,6 @@ function App() {
         onToggle={toggleTask}
         onDelete={deleteTask}
         />
-      
     </div>
   )
 }

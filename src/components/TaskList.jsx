@@ -1,7 +1,6 @@
 import { TaskItem } from "./TaskItem"
 
 export const TaskList = ({tasks, statusFilter, ...handlers}) => {
-
   // 完了・未完了でフィルターする
   const filteredTasks = tasks.filter(task => {
     if (statusFilter) return task.status;
@@ -20,6 +19,5 @@ export const TaskList = ({tasks, statusFilter, ...handlers}) => {
         ))}
       </ul>      
     </div>
-
   )
 }
