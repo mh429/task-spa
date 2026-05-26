@@ -17,9 +17,12 @@ function App() {
   // 編集中のタスクID
   const [editingId, setEditingId] = useState(null);
 
-  // 完了・未完了のカウンター（trueが完了、falseが未完了）
-  const [trueCounter, setTrueCounter] = useState(0);
-  const [falseCounter, setFalseCounter] = useState(0);
+  // // 完了・未完了のカウンター（trueが完了、falseが未完了）
+  // const [trueCounter, setTrueCounter] = useState(0);
+  // const [falseCounter, setFalseCounter] = useState(0);
+
+  const trueCounter = tasks.filter(task => task.status === true).length;
+  const falseCounter = tasks.filter(task => task.status === false).length;
 
   // 完了・未完了のフィルター
   const [statusFilter, setStatusFilter] = useState(false)
@@ -29,11 +32,11 @@ function App() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
   }, [tasks]);
 
-  // tasksに変更があるたび、件数を再カウント
-  useEffect(() => {
-    setTrueCounter(tasks.filter(task => task.status === true).length);
-    setFalseCounter(tasks.filter(task => task.status === false).length);
-  }, [tasks]);
+  // // tasksに変更があるたび、件数を再カウント
+  // useEffect(() => {
+  //   setTrueCounter(tasks.filter(task => task.status === true).length);
+  //   setFalseCounter(tasks.filter(task => task.status === false).length);
+  // }, [tasks]);
 
   // タスク追加関数
   const addTask = (title, caption, limit) => {
