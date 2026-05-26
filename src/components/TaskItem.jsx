@@ -1,4 +1,6 @@
 import { useState,useRef } from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
 
 export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete}) => {
   // 編集内容
@@ -16,33 +18,47 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete}
   if(editingId === task.id){
     return (
       <li>
-        <p>
-          タイトル（必須）：
-          <input
-            type="text"
-            value={editTitle}
-            onChange={e => setEditTitle(e.target.value)}
-            placeholder="タイトルを入力"
-            ref={editTitleRef}
-          />  
-        </p>
-        <p>
-          説明：
-          <textarea
-            value={editCaption}
-            onChange={e => setEditCaption(e.target.value)}
-            placeholder="説明を入力"
-          ></textarea>
-        </p>
-        <p>
-          期限：
-          <input
-            type="date"
-            value={editLimit}
-            onChange={e => setEditLimit(e.target.value)}
-          />
-        </p>
-        <button onClick={() => onUpdate(task.id, editTitle, editCaption, editLimit, editTitleRef)}>保存</button>
+        <table>
+          <tr>
+            <th>タイトル（必須）：</th>
+            <td>
+              <input
+                className="titleInput"
+                type="text"
+                value={editTitle}
+                onChange={e => setEditTitle(e.target.value)}
+                placeholder="タイトルを入力"
+                ref={editTitleRef}
+              /> 
+            </td>
+          </tr>
+          <tr>
+            <th>説明：</th>
+            <td>
+              <textarea
+              className="editTextarea"
+              value={editCaption}
+              onChange={e => setEditCaption(e.target.value)}
+              placeholder="説明を入力"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>期限：</th>
+            <td>
+              <input
+              className="limitInput"
+              type="date"
+              value={editLimit}
+              onChange={e => setEditLimit(e.target.value)}
+              />
+            </td>
+          </tr>
+        </table>
+
+        <div className="btnCenter">
+          <button onClick={() => onUpdate(task.id, editTitle, editCaption, editLimit, editTitleRef)}>保存</button>          
+        </div>
       </li>
     );
   }
@@ -50,24 +66,32 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete}
   // 通常表示
   return (
     <li>
-      <p>タイトル：{task.title}</p>
-      {task.caption && <p>説明：{task.caption}</p>}
+      {/* タスク情報 */}
+      <div className="upperWrapper">
+        <p className="title">{task.title}</p>  
+        <div className="editDelete">
+          <div onClick={() => onEditStart(task.id)}><FaPencilAlt /></div>
+          <div onClick={() => setDeleteConfirm(true)}><FaRegTrashAlt /></div>
+        </div>
+      </div>
       
-      {task.limit && <p>期限：{task.limit}</p>}
-
-      <button onClick={() => onToggle(task.id)}>{task.status ? "未完了に戻す" : "完了"}</button>
-
-      <button onClick={() => onEditStart(task.id)}>編集</button>
-      <button onClick={() => setDeleteConfirm(true)}>削除</button>
+      {task.caption && <p className="caption">{task.caption}</p>}
+      
+      <div className="bottomWrapper">
+        {task.limit ? <p className="limit">期限：{task.limit}</p> : <p></p>}
+        <button onClick={() => onToggle(task.id)}>{task.status ? "未完了に戻す" : "完了"}</button>
+      </div>
 
       {/* 削除確認 */}
       {deleteConfirm && (
-        <div>
-          <p>削除しますか？</p>
-          <button onClick={() => onDelete(task.id)}>はい</button>
-          <button onClick={() => setDeleteConfirm(false)}>いいえ</button>
+        <div className="deleteConfirm">
+          <p className="confirmText">削除しますか？</p>
+          <div className="confirmBtns">
+            <button onClick={() => onDelete(task.id)}>はい</button>
+            <button onClick={() => setDeleteConfirm(false)}>いいえ</button>            
+          </div>
         </div>
-      )}
+      )}    
     </li>
   )
 }

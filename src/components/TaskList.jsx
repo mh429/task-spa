@@ -8,7 +8,9 @@ export const TaskList = ({tasks, statusFilter, ...handlers}) => {
   });
 
   return (
-    <div>
+    <div 
+    className={statusFilter ? "tasksWrapper filterTrue" : "tasksWrapper filterFalse"}   
+    >
       <ul>
         {filteredTasks.map(task => (
           <TaskItem

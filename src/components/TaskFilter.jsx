@@ -8,7 +8,6 @@ export const TaskFilter = ({falseCounter,trueCounter,statusFilter,onSetFilter}) 
         <p>未完了 {falseCounter}件</p>
       </div>
       <div 
-      className="filterBtnTrue" 
       className={statusFilter ? "filterBtnTrue selected" : "filterBtnTrue"}   
       onClick={() => onSetFilter(true)}
       >

@@ -35,8 +35,11 @@ textarea {
   border: 1px solid #000;
   border-radius: 3px;
 }
+.editTextarea {
+  width: 400px;
+}
 button {
-  padding: 3px 5px;
+  padding: 4px 8px;
   border: 1px solid #000;
   border-radius: 4px;
 }
@@ -58,6 +61,8 @@ table {
 }
 
 /* タスク表示エリア */
+
+/* フィルターバー */
 .filterWrapper {
   display: flex;
 }
@@ -65,15 +70,106 @@ table {
   border: 1px solid #000;
   border-radius: 5px 5px 0 0;
   padding: 10px 30px;
+  background-color: aquamarine;
 }
 .filterBtnTrue {
   border: 1px solid #000;
   border-radius: 5px 5px 0 0;
   border-left: 0px;
   padding: 10px 30px;
+  background-color: dodgerblue;
 }
 .selected {
   border-bottom: 0px;
+}
+
+/* タスクリスト */
+.tasksWrapper {
+  padding: 40px 70px 60px;
+  border: 1px solid #000;
+  border-radius: 0 0 5px 5px;
+  border-top: 0px;
+}
+.filterFalse {
+  background-color: aquamarine;
+}
+.filterTrue {
+  background-color: dodgerblue;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+li {
+  padding: 20px 30px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background-color: #fff;
+  position: relative;
+}
+
+/* 表示用 */
+.title {
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+.caption {
+  font-size: 16px;
+}
+.limit {
+  margin-left: -10px;
+  padding: 6px 12px 0px;
+  border-radius: 15px;
+  font-size: 16px;
+  background-color: yellow;
+}
+.upperWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.editDelete {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+.editDelete > div {
+  width: 30px;
+  height: 30px;
+  padding-top: 3px;
+  padding-left: 6px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.bottomWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* 削除確認 */
+.deleteConfirm {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0,0,0,.6);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.confirmText {
+  color: #fff;
+}
+.confirmBtns {
+  display: flex;
+  gap: 5px;
+}
+.confirmBtns button {
+  background-color: #fff;
 }
 
 
