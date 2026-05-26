@@ -30,8 +30,47 @@ export const TaskInput = ({onAdd}) => {
   };
 
   return (
-    <div>
-      <p>
+    <div className="inputArea">
+      <table>
+        <tr>
+          <th>タイトル（必須）：</th>
+          <td>
+            <input
+              className="titleInput"
+              ref={titleRef}
+              type="text"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              placeholder="タイトルを入力"
+            />        
+          </td>
+        </tr>
+        <tr>
+          <th>説明：</th>
+          <td>
+            <textarea
+              value={caption}
+              onChange={e => setCaption(e.target.value)}
+              placeholder="説明を入力"
+            />            
+          </td>
+        </tr>
+        <tr>
+          <th>期限：</th>
+          <td>
+            <input
+              className="limitInput"
+              type="date"
+              value={limit}
+              onChange={e => setLimit(e.target.value)}
+              placeholder="期日を入力"
+            />            
+          </td>
+        </tr>
+      </table>
+
+
+      {/* <p>
         タイトル（必須）：
         <input
           ref={titleRef}
@@ -49,7 +88,6 @@ export const TaskInput = ({onAdd}) => {
           placeholder="説明を入力"
          />
       </p>
-
       <p>
         期限：
         <input
@@ -58,9 +96,12 @@ export const TaskInput = ({onAdd}) => {
           onChange={e => setLimit(e.target.value)}
           placeholder="期日を入力"
         />
-      </p>
+      </p> */}
 
-      <button onClick={handleAdd}>登録</button>
+      <div className="btnCenter">
+        <button onClick={handleAdd}>登録</button>        
+      </div>
+
     </div>
   )
 }

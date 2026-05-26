@@ -63,20 +63,22 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>タスク管理アプリ</h1>
+    <main>
+      <section className='titleSection'>
+        <h1>タスク管理SPA</h1>
+      </section>
 
-      <h2>タスク登録</h2>
-        <TaskInput onAdd={addTask} />
+      <section className='addSection'>
+        <TaskInput onAdd={addTask} />        
+      </section>
 
-      <h2>タスク一覧</h2>
-
+      <section className='taskSection'>
         <TaskFilter 
         falseCounter={falseCounter}
         trueCounter={trueCounter}
+        statusFilter={statusFilter}  
         onSetFilter={setStatusFilter}        
         />
-
         <TaskList
         tasks={tasks}
         editingId={editingId}
@@ -86,7 +88,8 @@ function App() {
         onToggle={toggleTask}
         onDelete={deleteTask}
         />
-    </div>
+      </section>
+    </main>
   )
 }
 
