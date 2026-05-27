@@ -31,6 +31,7 @@ export const TaskInput = ({onAdd}) => {
 
   return (
     <div className="inputArea">
+      {/* <h2>ADD TASK</h2> */}
       <table>
         <tr>
           <th>タイトル（必須）：</th>
