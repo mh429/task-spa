@@ -1,16 +1,41 @@
-# React + Vite
+## 起動手順
+- ローカル起動に必要な手順
+ターミナルで以下のコマンドを実行してください。
+git clone <リポジトリURL>
+cd <ディレクトリ名>
+npm install
+npm run dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 使用技術・バージョン
+- 使用した言語・フレームワーク・ライブラリ
+JavaScript
+React 19.2.6
+Vite 8.0.13
+Node.js v24.14.1
+react-icons 5.6.0
 
-Currently, two official plugins are available:
+## ディレクトリ構成・設計意図
+- どのようにファイル分割・状態設計を考えたか(簡潔に)
+UIごとにコンポーネントを分割し、App.jsxで管理しています。
+タスク一覧はApp.jsxでstate管理を行い、タスク更新時に子コンポーネントが再レンダリングされる構成にしました。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 工夫した点
+- 読みやすさ、バリデーションの設計など
+タイトルを必須入力にし、未入力時はタイトル入力欄へフォーカスを戻すようにしました。
+タスクをLocalStorageへ保存し、ブラウザを閉じても保持できるようにしました。
+完了タスクを見る機会は少ないと考え、完了タスクを未完了タスクと分離して表示しました。
+タスクの編集・削除機能を実装しました。
+誤操作を考慮し、完了済みタスクを未完了へ戻せるようにしました。
+タスク数が増えても操作しやすいよう、ページ上部へ戻るスクロールボタンを実装しました。
+明るい気持ちでタスクができるよう、朝日のような爽やかな背景画像を使用しました。
 
-## React Compiler
+## 今後の改善ポイント
+- 時間があれば実装したかった内容
+期限順でのソート機能
+タスク検索機能
+レスポンシブ対応
+- 改善余地があると考えている点
+レンダリング回数を意識し、コンポーネント設計を見直す
+スクロールバー表示時にレイアウトが左右へズレる挙動の改善
+ページ上部に戻るボタンをスクロール時のみ表示する
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
