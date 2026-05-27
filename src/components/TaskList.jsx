@@ -8,7 +8,6 @@ export const TaskList = ({tasks, statusFilter, ...handlers}) => {
   });
 
   return (
-
       <ul>
         {filteredTasks.map(task => (
           <TaskItem
@@ -19,6 +18,5 @@ export const TaskList = ({tasks, statusFilter, ...handlers}) => {
           />
         ))}
       </ul>      
-
   )
 }

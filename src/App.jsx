@@ -39,13 +39,7 @@ function App() {
   };
 
   // タスク編集関数
-  const updateTask = (id, newTitle, newCaption, newLimit, editTitleRef) => {
-    // タイトルが空ならリターン
-    if(!newTitle.trim()) {
-      editTitleRef.current.focus();
-      return;
-    }
-
+  const updateTask = (id, newTitle, newCaption, newLimit) => {
     // タスク一覧から該当のタスクを探し、書き換える
     setTasks(tasks.map(task => task.id === id ? {...task, title: newTitle, caption:newCaption, limit: newLimit} : task));
     // 編集中のタスクIDを空にする
@@ -66,17 +60,17 @@ function App() {
   return (
     <main id='top'>
       <div className='left'>
-        <section className='titleSection'>
+        <section>
           <h1>TASK SPA</h1>
         </section>
 
-        <section className='addSection'>
+        <section>
           <TaskInput onAdd={addTask} />        
         </section>
       </div>
 
       <div className='right'>
-        <section className='taskSection'>
+        <section>
           <TaskFilter 
           falseCounter={falseCounter}
           trueCounter={trueCounter}
@@ -93,13 +87,9 @@ function App() {
           onDelete={deleteTask}
           />
         </section>
-      <TopBtn/>
-
       </div>
 
-
-
-
+      <TopBtn/>
     </main>
   )
 }

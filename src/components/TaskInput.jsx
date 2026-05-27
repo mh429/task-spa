@@ -9,10 +9,11 @@ export const TaskInput = ({onAdd}) => {
   // input要素を参照するためのref
   const titleRef = useRef(null);
 
+  // 登録ボタンが押された時
   const handleAdd = () => {
     // タイトルが空ならリターン
     if(!title.trim()) {
-      // alert("タイトルは必須です")
+      setTitle("");
       titleRef.current.focus();
       return;
     }
@@ -71,7 +72,7 @@ export const TaskInput = ({onAdd}) => {
       </table>
 
       <div className="btnCenter">
-        <button onClick={handleAdd}>登録</button>        
+        <button onClick={() => handleAdd()}>登録</button>        
       </div>
     </div>
   )

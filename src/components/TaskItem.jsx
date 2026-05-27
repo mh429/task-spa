@@ -14,6 +14,20 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete,
   // input要素を参照するためのref
   const editTitleRef = useRef(null);
 
+  // 保存ボタンが押された時
+  const handleUpdate = () => {
+    // タイトルが空ならリターン
+    if(!editTitle.trim()) {
+      setEditTitle("");
+      editTitleRef.current.focus();
+      return;
+    }
+
+    // 親コンポーネントにタスク更新を依頼
+    onUpdate(task.id, editTitle, editCaption, editLimit);
+  };
+
+
   // 編集モード
   if(editingId === task.id){
     return (
@@ -36,7 +50,6 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete,
             <th>説明：</th>
             <td>
               <textarea
-              className="editTextarea"
               value={editCaption}
               onChange={e => setEditCaption(e.target.value)}
               placeholder="タスクの説明"
@@ -57,7 +70,7 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete,
         </table>
 
         <div className="btnCenter">
-          <button onClick={() => onUpdate(task.id, editTitle, editCaption, editLimit, editTitleRef)}>保存</button>          
+          <button onClick={() => handleUpdate()}>保存</button>          
         </div>
       </li>
     );
