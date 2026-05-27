@@ -85,7 +85,7 @@ export const TaskItem = ({task,editingId,onEditStart,onUpdate,onToggle,onDelete}
       {/* 削除確認 */}
       {deleteConfirm && (
         <div className="deleteConfirm">
-          <p className="confirmText">削除しますか？</p>
+          <p className="confirmText">タスクを削除しますか？</p>
           <div className="confirmBtns">
             <button onClick={() => onDelete(task.id)}>はい</button>
             <button onClick={() => setDeleteConfirm(false)}>いいえ</button>            

@@ -31,10 +31,10 @@ export const TaskInput = ({onAdd}) => {
 
   return (
     <div className="inputArea">
-      {/* <h2>ADD TASK</h2> */}
+      <h2>ADD TASK</h2>
       <table>
         <tr>
-          <th>タイトル（必須）：</th>
+          <th>タイトル：</th>
           <td>
             <input
               className="titleInput"
@@ -42,7 +42,7 @@ export const TaskInput = ({onAdd}) => {
               type="text"
               value={title}
               onChange={e => setTitle(e.target.value)}
-              placeholder="タイトルを入力"
+              placeholder="タスクのタイトル（必須）"
             />        
           </td>
         </tr>
@@ -52,7 +52,7 @@ export const TaskInput = ({onAdd}) => {
             <textarea
               value={caption}
               onChange={e => setCaption(e.target.value)}
-              placeholder="説明を入力"
+              placeholder="タスクの説明"
             />            
           </td>
         </tr>

@@ -64,31 +64,38 @@ function App() {
 
   return (
     <main>
-      <section className='titleSection'>
-        <h1>タスク管理SPA</h1>
-      </section>
+      <div className='left'>
+        <section className='titleSection'>
+          <h1>TASK SPA</h1>
+        </section>
 
-      <section className='addSection'>
-        <TaskInput onAdd={addTask} />        
-      </section>
+        <section className='addSection'>
+          <TaskInput onAdd={addTask} />        
+        </section>
+      </div>
 
-      <section className='taskSection'>
-        <TaskFilter 
-        falseCounter={falseCounter}
-        trueCounter={trueCounter}
-        statusFilter={statusFilter}  
-        onSetFilter={setStatusFilter}        
-        />
-        <TaskList
-        tasks={tasks}
-        editingId={editingId}
-        statusFilter={statusFilter}        
-        onEditStart={setEditingId}
-        onUpdate={updateTask}
-        onToggle={toggleTask}
-        onDelete={deleteTask}
-        />
-      </section>
+      <div className='right'>
+        <section className='taskSection'>
+          <TaskFilter 
+          falseCounter={falseCounter}
+          trueCounter={trueCounter}
+          statusFilter={statusFilter}  
+          onSetFilter={setStatusFilter}        
+          />
+          <TaskList
+          tasks={tasks}
+          editingId={editingId}
+          statusFilter={statusFilter}        
+          onEditStart={setEditingId}
+          onUpdate={updateTask}
+          onToggle={toggleTask}
+          onDelete={deleteTask}
+          />
+        </section>
+      </div>
+
+
+
     </main>
   )
 }

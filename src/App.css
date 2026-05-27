@@ -1,12 +1,19 @@
 body {
   color: #000;
   padding: 50px 0;
+  background-image: url(../public/gradient1.jpg);
+  background-size: cover;
+  background-position: 50% 30%;
+  background-attachment: fixed;
   /* background-color: #fffae1; */
 }
 
 main {
-  width: 800px;
+  width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 10vw; */
 }
 
 section {
@@ -15,74 +22,101 @@ section {
 
 h1 {
   text-align: center;
-  font-size: 20px;
+  font-size: 50px;
+  font-weight: bold;
+  padding-bottom: 30px;
+}
+
+h2 {
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 input {
   border: 1px solid #000;
   border-radius: 3px;
+  background-color: #fff;
 }
 .titleInput {
-  width: 400px;
+  width: 300px;
   padding: 2px 4px;
 }
 .limitInput {
   padding: 2px 4px;
 }
 textarea {
-  width: 600px;
+  width: 300px;
   height: 50px;
   padding: 2px 4px;
   border: 1px solid #000;
   border-radius: 3px;
+  background-color: #fff;
 }
-.editTextarea {
-  width: 400px;
-}
+/* .editTextarea {
+  width: 300px;
+} */
 button {
   padding: 4px 8px;
-  border: 1px solid #000;
+  border: 1px solid #4285f4;
   border-radius: 4px;
+  /* background-color: #afc9dc; */
+  background-color: #4285f4;
+  color: #fff;
+}
+button:hover {
+  /* background-color: #fff; */
+  background-color: rgba(0,0,0,0);
+  color: #4285f4;
 }
 .btnCenter {
   text-align: center;
 }
 
 table {
-  margin: 0 auto;
+  margin: 0 auto 10px;
   border-collapse: separate;
   border-spacing: 0 10px;
 }
 
+
+.left {
+  width: 500px;
+}
+.right {
+  width: 500px;
+}
+
 /* タスク登録エリア */
 .inputArea {
-  padding: 10px;
-  /* border: 1px solid #000; */
+  padding: 20px;
+  border: 1px solid #000;
   border-radius: 10px;
-  background-color: #fcfb7c;
+  background-color: rgba(255,255,255,.6);
 }
 
 /* タスク表示エリア */
 
 /* フィルターバー */
 .filterWrapper {
+  padding-bottom: 30px;
   display: flex;
+  gap: 10px;
 }
-.filterBtnFalse {
-  /* border: 1px solid #000; */
-  border-radius: 5px 5px 0 0;
+.filterBtn {
+  border: 1px solid #000;
+  /* border-radius: 5px 5px 0 0; */
   padding: 10px 30px;
-  background-color: #86e862;
+  cursor: pointer;
 }
-.filterBtnTrue {
-  /* border: 1px solid #000; */
-  border-radius: 5px 5px 0 0;
-  border-left: 0px;
-  padding: 10px 30px;
-  background-color: #117651;
+.filterBtn:hover {
+  background-color: #fff;
+  color: #000;
 }
 .selected {
-  border-bottom: 0px;
+  background-color: #000;
+  color: #fff;
 }
 
 /* タスクリスト */
@@ -108,12 +142,13 @@ li {
   padding: 20px 30px;
   border: 1px solid #000;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: rgba(255,255,255,.6);
   position: relative;
 }
 
 /* 表示用 */
 .title {
+  width: 350px;
   font-size: 20px;
   padding-bottom: 5px;
 }
@@ -123,9 +158,9 @@ li {
 .limit {
   margin-left: -10px;
   padding: 6px 12px 0px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   font-size: 16px;
-  background-color: yellow;
+  background-color: rgba(241, 89, 34, .9);
 }
 .upperWrapper {
   display: flex;
@@ -144,6 +179,13 @@ li {
   border: 1px solid #000;
   border-radius: 50%;
   cursor: pointer;
+  background-color: #000;
+  color: #fff;
+}
+.editDelete > div:hover {
+  background-color: #fff;
+  background-color: rgba(0,0,0,0);
+  color: #000;
 }
 .bottomWrapper {
   display: flex;
