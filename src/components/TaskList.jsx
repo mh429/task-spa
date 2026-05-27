@@ -14,6 +14,7 @@ export const TaskList = ({tasks, statusFilter, ...handlers}) => {
           <TaskItem
             key={task.id}
             task={task}
+            statusFilter={statusFilter}
             {...handlers}
           />
         ))}
