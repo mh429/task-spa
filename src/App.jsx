@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { TaskList } from './components/TaskList';
 import { TaskInput } from './components/TaskInput';
 import { TaskFilter } from './components/TaskFilter';
+import { TopBtn } from './components/TopBtn';
 import './App.css'
 
 const STORAGE_KEY = "tasksLocal"
@@ -63,7 +64,7 @@ function App() {
   }
 
   return (
-    <main>
+    <main id='top'>
       <div className='left'>
         <section className='titleSection'>
           <h1>TASK SPA</h1>
@@ -92,7 +93,10 @@ function App() {
           onDelete={deleteTask}
           />
         </section>
+      <TopBtn/>
+
       </div>
+
 
 
 

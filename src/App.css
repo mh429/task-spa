@@ -1,29 +1,36 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: #000;
-  padding: 50px 0;
+  /* padding: 50px 0; */
   background-image: url(../public/gradient1.jpg);
   background-size: cover;
   background-position: 50% 30%;
   background-attachment: fixed;
 }
-
+/* 
 main {
   width: 1200px;
-  /* margin: 0 auto;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between; */
-  position: relative;
-}
+  justify-content: space-between;
+  margin-right: 12vw;
+  display: flex;
+  justify-content: flex-end;
+} */
 
 .left {
   width: 500px;
   position: fixed;
   top: 50px;
-  left: 200px;
+  right: 52vw;
 }
 .right {
   width: 500px;
-  margin-left: 800px;
+  margin-left: 52vw;
+  padding: 50px 0;
 }
 
 
@@ -259,6 +266,13 @@ li {
   color: #dd436b;
 }
 
+/* トップまでスクロール */
+.topBtn {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  font-size: 40px;
+}
 
 
 /* .counter {
